@@ -17,7 +17,7 @@ class TaskController extends Controller
 
     public function post(TaskRequest $request){
         $form = $request->all();
-        $form->user_id = Auth::id();
+        $form['user_id'] = Auth::id();
         Task::create($form);
         return redirect ('/');
     }
@@ -33,5 +33,9 @@ class TaskController extends Controller
     {
         Task::find($request->id)->delete();
         return redirect('/');
+    }
+
+    public function login(){
+        return view('welcome');
     }
 }

@@ -12,7 +12,15 @@
     <div class="header">
       <h1>Todo List</h1>
       <p>{{Auth::user()->name}}でログイン中</p>
-      <a href="/logout">ログアウト</a>
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+
+        <x-dropdown-link :href="route('logout')"
+                onclick="event.preventDefault();
+                            this.closest('form').submit();">
+            {{ __('ログアウト') }}
+        </x-dropdown-link>
+      </form>
       <form action="/" method="POST" class="header_form">
         @if (count($errors) > 0)
         <ul>
@@ -24,11 +32,11 @@
         @csrf
         <input type="text" name="task" class="header_input">
         <select name="tag">
-          <option value="家事">家事</option>
-          <option value="勉強">勉強</option>
-          <option value="運動">運動</option>
-          <option value="食事">食事</option>
-          <option value="移動">移動</option>
+          <option value="1">家事</option>
+          <option value="2">勉強</option>
+          <option value="3">運動</option>
+          <option value="4">食事</option>
+          <option value="5">移動</option>
         </select>
         <input type="submit" value="追加" class="header_btn">
       </form>
@@ -49,16 +57,14 @@
             @csrf
             <td>{{$task->created_at}}</td>
             <td><input type="text" name="task" value="{{$task->task}}" class="todo_form"></td>
-            <td>
-              <form action="/post" method="post" value="{{$task->tag}}">
-                <select name="tag">
-                  <option value="家事">家事</option>
-                  <option value="勉強">勉強</option>
-                  <option value="運動">運動</option>
-                  <option value="食事">食事</option>
-                  <option value="移動">移動</option>
-                </select>
-              </form>
+            <td>  
+              <select name="tag">
+                <option value="1">家事</option>
+                <option value="2">勉強</option>
+                <option value="3">運動</option>
+                <option value="4">食事</option>
+                <option value="5">移動</option>
+              </select>
             </td>
             <td><button class="edit_btn">更新</button></td>
           </form>
