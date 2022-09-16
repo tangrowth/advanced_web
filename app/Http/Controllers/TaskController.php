@@ -39,7 +39,9 @@ class TaskController extends Controller
     }
 
     public function show(){
-        return view('show');
+        $tasks = Task::where('user_id', \Auth::user()->id)->get();
+        $tags = Tag::all();
+        return view('index', ['tasks' => $tasks, 'tags' => $tags]);
     }
 
     public function login(){
