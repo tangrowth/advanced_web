@@ -14,13 +14,13 @@
       <p>{{Auth::user()->name}}でログイン中</p>
       <form method="POST" action="{{ route('logout') }}">
         @csrf
-
         <x-dropdown-link :href="route('logout')"
                 onclick="event.preventDefault();
                             this.closest('form').submit();">
             {{ __('ログアウト') }}
         </x-dropdown-link>
       </form>
+      <a href="/show">タスク検索</a>
       <form action="/" method="POST" class="header_form">
         @if (count($errors) > 0)
         <ul>
@@ -31,12 +31,10 @@
       @endif
         @csrf
         <input type="text" name="task" class="header_input">
-        <select name="tag">
-          <option value="1">家事</option>
-          <option value="2">勉強</option>
-          <option value="3">運動</option>
-          <option value="4">食事</option>
-          <option value="5">移動</option>
+        <select name="tag_id">
+          @foreach($tags as $tag)
+            <option value="{{$tag->id}}">{{$tag->tag}}</option>
+          @endforeach
         </select>
         <input type="submit" value="追加" class="header_btn">
       </form>
@@ -58,12 +56,10 @@
             <td>{{$task->created_at}}</td>
             <td><input type="text" name="task" value="{{$task->task}}" class="todo_form"></td>
             <td>  
-              <select name="tag">
-                <option value="1">家事</option>
-                <option value="2">勉強</option>
-                <option value="3">運動</option>
-                <option value="4">食事</option>
-                <option value="5">移動</option>
+              <select name="tag_id" value={{$task->tag_id}}>
+                @foreach($tags as $tag)
+                  <option value="{{$tag->id}}">{{$tag->tag}}</option>
+                @endforeach
               </select>
             </td>
             <td><button class="edit_btn">更新</button></td>

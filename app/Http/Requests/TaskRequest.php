@@ -25,7 +25,7 @@ class TaskRequest extends FormRequest
     {
         return [
             'task'=>'required|max:20',
-            'tag'=>'required'
+            'tag_id'=>'required'
         ];
     }
 }

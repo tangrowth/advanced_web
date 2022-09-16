@@ -16,4 +16,8 @@ class Task extends Model
     public function user(){
         return $this->belongs('App\User');
     }
+
+    public function tasks(){
+        return $this->hasOne('App\Task');
+    }
 }
