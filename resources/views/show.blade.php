@@ -20,13 +20,19 @@
               {{ __('ログアウト') }}
           </x-dropdown-link>
         </form>
+        <a href="/">戻る</a>
       </div>
-      <div class="search">
 
+      <div class="search">
       </div>
+
     <div class="todo">
-      <table class="todolist">
+      <form action="show" method="POST">
         @csrf
+        <input type="text" name="input" value="@if (isset($input)){{ $input }} @endif">
+        <input type="submit" value="検索">
+      </form>
+      <table class="todolist">
         <tr>
           <th>作成日</th>
           <th>タスク名</th>
@@ -43,7 +49,7 @@
             <td>  
               <select name="tag_id" value={{$task->tag_id}}>
                 @foreach($tags as $tag)
-                @if(old('tag_id') === $tag->id)
+                @if(old('tag_id',$task->tag_id) == $tag->id)
                   <option value="{{ $tag->id }}" selected>{{ $tag->tag }}</option>
                 @else
                   <option value="{{ $tag->id }}">{{ $tag->tag }}</option>

@@ -15,6 +15,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/edit/{id}',[TaskController::class, 'edit']);
     Route::post('/delete/{id}', [TaskController::class, 'delete']);
     Route::get('/show',[TaskController::class, 'show']);
+    Route::post('/show',[TaskController::class, 'search']);
 });
 
 require __DIR__.'/auth.php';

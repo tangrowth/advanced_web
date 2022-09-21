@@ -38,10 +38,20 @@ class TaskController extends Controller
         return redirect('/');
     }
 
-    public function show(){
-        $tasks = Task::where('user_id', \Auth::user()->id)->get();
+    public function show()
+    {   $tags = Tag::all();
+        return view('show', ['input' => '']);
+    }
+
+    public function search(Request $request)
+    {
         $tags = Tag::all();
-        return view('index', ['tasks' => $tasks, 'tags' => $tags]);
+        $tasks = Task::where('user_id', \Auth::user()->id)->where('task', 'LIKE BINARY',"%{$request->input}%")->get();
+        $param = [
+            'input' => $request->input,
+            'tasks' => $tasks
+        ];
+        return view('show', $param,['tags' => $tags]);
     }
 
     public function login(){
