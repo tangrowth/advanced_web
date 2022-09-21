@@ -30,6 +30,12 @@
       <form action="show" method="POST">
         @csrf
         <input type="text" name="input" value="{{$input}}">
+        <select name="category" value="{{$category}}">
+          <option value="" selected></option>
+          @foreach($tags as $tag)
+            <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
+          @endforeach
+        </select>
         <input type="submit" value="検索">
       </form>
       @if (@isset($tasks))

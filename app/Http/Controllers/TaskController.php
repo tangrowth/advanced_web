@@ -40,15 +40,16 @@ class TaskController extends Controller
 
     public function show()
     {   $tags = Tag::all();
-        return view('show', ['input' => '']);
+        return view('show', ['input' => '','category' => '','tags' => $tags]);
     }
 
     public function search(Request $request)
     {
         $tags = Tag::all();
-        $tasks = Task::where('user_id', \Auth::user()->id)->where('task', 'LIKE BINARY',"%{$request->input}%")->get();
+        $tasks = Task::where('user_id', \Auth::user()->id)->where('task', 'LIKE BINARY',"%{$request->input}%")->where('tag_id', 'LIKE',"%{$request->category}%")->get();
         $param = [
             'input' => $request->input,
+            'category' => $request->category,
             'tasks' => $tasks
         ];
         return view('show', $param,['tags' => $tags]);
