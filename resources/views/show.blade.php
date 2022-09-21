@@ -29,9 +29,10 @@
     <div class="todo">
       <form action="show" method="POST">
         @csrf
-        <input type="text" name="input" value="@if (isset($input)){{ $input }} @endif">
+        <input type="text" name="input" value="{{$input}}">
         <input type="submit" value="検索">
       </form>
+      @if (@isset($tasks))
       <table class="todolist">
         <tr>
           <th>作成日</th>
@@ -63,6 +64,7 @@
         </tr>
         @endforeach
       </table>
+      @endif
     </div>
   </div>
   </div>
