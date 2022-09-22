@@ -4,23 +4,24 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <title>COACHTECH</title>
 </head>
+
 <body>
-  <div class="background">
   <div class="container">
     <div class="header">
-      <h1>Todo List</h1>
-      <p>{{Auth::user()->name}}でログイン中</p>
-      <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <x-dropdown-link :href="route('logout')"
-                onclick="event.preventDefault();
-                            this.closest('form').submit();">
-            {{ __('ログアウト') }}
-        </x-dropdown-link>
-      </form>
-      <a href="/show">タスク検索</a>
+      <div class="header_top">
+        <h1>Todo List</h1>
+        <div class="header_right">
+          <p>{{Auth::user()->name}}でログイン中</p>
+          <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="header_top_btn">ログアウト</a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+        </div>
+      </div>
+      <a href="/show" class="search_btn">タスク検索</a>
       <form action="/" method="POST" class="header_form">
         @if (count($errors) > 0)
         <ul>
@@ -31,7 +32,7 @@
       @endif
         @csrf
         <input type="text" name="task" class="header_input">
-        <select name="tag_id">
+        <select name="tag_id" class="tag_box">
           @foreach($tags as $tag)
             <option value="{{ $tag->id }}">{{$tag->tag}}</option>
           @endforeach
@@ -56,7 +57,7 @@
             <td>{{$task->created_at}}</td>
             <td><input type="text" name="task" value="{{$task->task}}" class="todo_form"></td>
             <td>  
-              <select name="tag_id" value={{$task->tag_id}}>
+              <select class="tag_box" name="tag_id" value={{$task->tag_id}}>
                 @foreach($tags as $tag)
                 @if(old('tag_id',$task->tag_id) == $tag->id)
                   <option value="{{ $tag->id }}" selected>{{ $tag->tag }}</option>
@@ -73,7 +74,6 @@
         @endforeach
       </table>
     </div>
-  </div>
   </div>
 </body>
 </html>

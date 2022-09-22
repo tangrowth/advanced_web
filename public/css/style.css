@@ -1,0 +1,115 @@
+body{
+  background-color: midnightblue;
+}
+.container{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+}
+h1{
+  font-size: 30px;
+}
+.header_top{
+  display: flex;
+  justify-content: space-between;
+  width: 100%
+}
+.header_right{
+  display: flex;
+  justify-content: flex-end;
+}
+.header_top_btn {
+  padding: 16px 8px 16px 8px;
+  border-radius: 5px;
+  background-color: white;
+  border: solid 2px red;
+  color: red;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.header_top_btn:hover {
+  background-color: red;
+  border: solid 2px white;
+  color: white;
+}
+.search_btn {
+  padding: 16px 8px 16px 8px;
+  border-radius: 5px;
+  background-color: white;
+  border: solid 2px lightseagreen;
+  color: lightseagreen;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.search_btn:hover {
+  background-color: lightseagreen;
+  border: solid 2px white;
+  color: white;
+}
+.header_form{
+  text-align: center;
+  margin: 30px;
+}
+.header_input{
+  height: 30px;
+  width: 80%;
+}
+.header_btn{
+  padding: 8px;
+  border-radius: 5px;
+  background-color: white;
+  border: solid 2px purple;
+  color: purple;
+}
+.header_btn:hover{
+  background-color: purple;
+  border: solid 2px white;
+  color: white;
+}
+
+.todolist{
+  text-align: center;
+  width: 90%;
+  margin: 30px;border-collapse: separate;
+  border-spacing: 0px 8px;  
+}
+.todo_form{
+  width: 80%;
+  height: 35px;
+}
+.tag_box{
+  padding: 5px;
+  height: 35px;
+}
+.edit_btn{
+  padding: 8px;
+  border-radius: 5px;
+  background-color: white;
+  border: solid 2px orange;
+  color: orange;
+}
+.edit_btn:hover{
+  background-color: orange;
+  border: solid 2px white;
+  color: white;
+}
+.delete_btn{
+  padding: 8px;
+    border-radius: 5px;
+    background-color: white;
+    border: solid 2px turquoise;
+    color: turquoise;
+}
+.delete_btn:hover{
+  background-color: turquoise;
+    border: solid 2px turquoise;
+    color: white;
+}
